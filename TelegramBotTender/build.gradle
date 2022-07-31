@@ -1,0 +1,54 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.5'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'org.kasad0r'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.jetbrains:annotations:20.1.0'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	implementation 'org.telegram:telegrambots-spring-boot-starter:5.3.0'
+
+
+  // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.4.5'
+
+	// https://mvnrepository.com/artifact/org.jsoup/jsoup
+	implementation group: 'org.jsoup', name: 'jsoup', version: '1.9.1'
+
+	// https://mvnrepository.com/artifact/org.apache.poi/poi
+	implementation group: 'org.apache.poi', name: 'poi', version: '3.17'
+
+	// https://mvnrepository.com/artifact/javax.transaction/jta          *********************
+	implementation group: 'javax.transaction', name: 'jta', version: '1.1'
+
+	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.25'
+
+	// https://jar-download.com   *********************
+	implementation group: 'javax.jws', name: 'javax.jws-api', version: '1.1'
+
+	// https://jar-download.com
+	implementation group: 'com.xenoamess', name: 'nashorn', version: 'jdk8u265-b01-x2'
+
+	// https://mvnrepository.com/artifact/org.projectlombok/lombok           *********************
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+
+
+
+
+}
+
+test {
+	useJUnitPlatform()
+}

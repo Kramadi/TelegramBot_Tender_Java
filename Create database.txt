@@ -1,0 +1,62 @@
+CREATE DATABASE bot;
+Use bot;
+
+CREATE TABLE `tender` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`found_date` DATE NOT NULL,
+	`update_date` DATE NOT NULL,
+	`subject` varchar(1500) NOT NULL,
+	`organization` varchar(5000) NOT NULL,
+	`price` varchar(100) NOT NULL,
+	`status` varchar(50) NOT NULL,
+	`start_date` varchar(50) NOT NULL,
+	`end_date` varchar(50) NOT NULL,
+	`url` varchar(300) NOT NULL,
+	`search_id` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `user` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`first_name` varchar(50) NULL,
+	`last_name` varchar(50) NULL,
+	`username` varchar(50) NULL,
+	`chat_id` INT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `platform` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`name` varchar(50) NOT NULL,
+	`script` TEXT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `search` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`name` varchar(100) NOT NULL,
+	`creation_date` DATE NOT NULL,
+	`last_search_date` DATE NOT NULL,
+	`keyword` varchar(100) NOT NULL,
+	`interval` INT NOT NULL,
+	`state` BOOLEAN NOT NULL,
+	`user_id` INT NOT NULL,
+	`platform_id` INT NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `search_has_platform` (
+	`search_id` INT NOT NULL,
+	`platform_id` INT NOT NULL,
+	PRIMARY KEY (`search_id`,`platform_id`)
+);
+
+
+ALTER TABLE `tender` ADD CONSTRAINT `tender_fk0` FOREIGN KEY (`search_id`) REFERENCES `search`(`id`);
+
+ALTER TABLE `search_has_platform` ADD CONSTRAINT `search_has_platform_fk0` FOREIGN KEY (`search_id`) REFERENCES `search`(`id`);
+
+ALTER TABLE `search_has_platform` ADD CONSTRAINT `search_has_platform_fk1` FOREIGN KEY (`platform_id`) REFERENCES `platform`(`id`);
+
+ALTER TABLE `search` ADD CONSTRAINT `search_fk0` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`);
+
